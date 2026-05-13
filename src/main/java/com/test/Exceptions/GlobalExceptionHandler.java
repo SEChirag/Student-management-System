@@ -1,0 +1,20 @@
+package com.test.Exceptions;
+
+import com.test.Exceptions.StudentNotFoundException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+//@ResponseStatus(HttpStatus.NOT_FOUND)
+@RestControllerAdvice
+public class GlobalExceptionHandler {
+
+   @ExceptionHandler(StudentNotFoundException.class)
+    public ResponseEntity<String> handleException(StudentNotFoundException ex ) {
+
+       return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+
+    }
+}
